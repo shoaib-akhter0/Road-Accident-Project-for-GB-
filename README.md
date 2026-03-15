@@ -39,3 +39,6 @@ The project uses a Keras-based deep learning model trained to classify road acci
 ## License
 
 This project is open source and available under the MIT License.
+## Owner
+
+Shoaib Akhter 
