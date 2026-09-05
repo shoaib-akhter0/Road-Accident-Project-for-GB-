@@ -1,0 +1,10 @@
+# Road Accident Detection & Alarming System for GB
+# NOTE: TensorFlow has no wheels for Python 3.14 yet - use Python 3.13
+# (the project .venv is already built on Python 3.13 via uv).
+
+flask
+numpy
+opencv-python
+tensorflow
+pillow
+python-dotenv

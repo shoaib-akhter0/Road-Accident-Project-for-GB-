@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Road Accident Detection &amp; Alarming System for GB</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header class="topbar">
+    <div class="brand">
+      <div class="brand-badge">&#9888;</div>
+      <div class="brand-text-wrap">
+        <span class="brand-title">ROAD ACCIDENT DETECTION</span>
+        <span class="brand-sub">&amp; ALARMING SYSTEM <span class="brand-sub-accent">FOR GB</span></span>
+      </div>
+    </div>
+    <div class="topbar-right">
+      <div id="status-pill" class="status-pill monitoring">
+        <span class="status-dot"></span>
+        <span id="status-label">MONITORING</span>
+      </div>
+      <div id="clock" class="clock">--:--:--</div>
+    </div>
+  </header>
+
+  <main class="layout">
+
+    <section class="video-panel">
+      <div class="section-head">
+        <h2 class="section-title">Multi-Camera Monitoring</h2>
+        <span class="section-sub">4 CHANNELS &middot; GRID VIEW</span>
+      </div>
+
+      <div class="cam-grid">
+
+        <!-- CAM 01 : accident detection channel -->
+        <article class="cam-card" id="cam-card-1">
+          <div class="cam-header">
+            <span class="cam-name"><span class="cam-num">CAM 01</span> INTERSECTION</span>
+            <span id="cam1-badge" class="cam-badge cam-badge-ok">
+              <span class="cam-badge-dot"></span>
+              <span id="cam1-badge-text">NO ACCIDENT</span>
+            </span>
+          </div>
+          <div id="video-frame" class="video-frame">
+            <img id="video-stream" src="/video_feed" alt="CAM 01 live feed">
+            <div id="rec-badge" class="rec-badge"><span class="rec-dot"></span> LIVE</div>
+            <div id="frozen-badge" class="frozen-badge hidden">&#10074;&#10074; FEED PAUSED</div>
+          </div>
+          <div class="cam-footer">
+            <span>AI DETECTION &middot; ACTIVE</span>
+            <span id="video-percent" class="video-percent hidden">ALERT: 0.0%</span>
+          </div>
+        </article>
+
+        <!-- CAM 02 : display-only channel -->
+        <article class="cam-card" id="cam-card-2">
+          <div class="cam-header">
+            <span class="cam-name"><span class="cam-num">CAM 02</span> MAIN BOULEVARD</span>
+            <span class="cam-badge cam-badge-ok">
+              <span class="cam-badge-dot"></span> NO ACCIDENT
+            </span>
+          </div>
+          <div class="video-frame">
+            <img src="/video_feed/2" alt="CAM 02 live feed">
+            <div class="rec-badge"><span class="rec-dot"></span> LIVE</div>
+          </div>
+          <div class="cam-footer">
+            <span>STANDARD MONITORING</span>
+            <span>CH 02</span>
+          </div>
+        </article>
+
+        <!-- CAM 03 : display-only channel -->
+        <article class="cam-card" id="cam-card-3">
+          <div class="cam-header">
+            <span class="cam-name"><span class="cam-num">CAM 03</span> CITY GATE</span>
+            <span class="cam-badge cam-badge-ok">
+              <span class="cam-badge-dot"></span> NO ACCIDENT
+            </span>
+          </div>
+          <div class="video-frame">
+            <img src="/video_feed/3" alt="CAM 03 live feed">
+            <div class="rec-badge"><span class="rec-dot"></span> LIVE</div>
+          </div>
+          <div class="cam-footer">
+            <span>STANDARD MONITORING</span>
+            <span>CH 03</span>
+          </div>
+        </article>
+
+        <!-- CAM 04 : intentionally offline -->
+        <article class="cam-card cam-card-offline" id="cam-card-4">
+          <div class="cam-header">
+            <span class="cam-name"><span class="cam-num">CAM 04</span> BRIDGE ROAD</span>
+            <span class="cam-badge cam-badge-offline">
+              <span class="cam-badge-dot"></span> CAMERA OFFLINE
+            </span>
+          </div>
+          <div class="video-frame cam-offline-body">
+            <div class="offline-inner">
+              <div class="offline-icon">&#128247;</div>
+              <p class="offline-title">NO SIGNAL</p>
+              <p class="offline-sub">CHANNEL UNAVAILABLE &mdash; CHECK CONNECTION</p>
+            </div>
+          </div>
+          <div class="cam-footer">
+            <span>LAST SEEN: &mdash;</span>
+            <span>CH 04</span>
+          </div>
+        </article>
+
+      </div>
+
+      <div class="video-controls">
+        <button id="btn-pause" class="ctrl-btn">&#10074;&#10074;&nbsp;&nbsp;Pause</button>
+        <button id="btn-resume" class="ctrl-btn ctrl-btn-green">&#9654;&nbsp;&nbsp;Resume</button>
+        <button id="btn-stop" class="ctrl-btn ctrl-btn-red">&#9632;&nbsp;&nbsp;Stop</button>
+      </div>
+    </section>
+
+    <aside class="side-panel">
+
+      <div class="panel-card readout-card">
+        <h2 class="panel-title">Live Readout</h2>
+
+        <!-- Shown while roads are normal: no readings -->
+        <div id="readout-idle" class="readout-idle">
+          <div class="idle-shield">&#128737;</div>
+          <p class="idle-text">All clear. Roads are safe.</p>
+          <p class="idle-sub">Readings appear here the moment an accident is detected.</p>
+        </div>
+
+        <!-- Shown only when an accident is detected -->
+        <div id="readout-active" class="readout-active hidden">
+          <div class="metric-row">
+            <span class="metric-label">Accident probability</span>
+            <span id="metric-percent" class="metric-value metric-value-alert">0.0%</span>
+          </div>
+          <div class="metric-bar-track">
+            <div id="metric-bar-fill" class="metric-bar-fill"></div>
+          </div>
+          <div class="metric-row">
+            <span class="metric-label">Motion spikes (window)</span>
+            <span id="metric-spikes" class="metric-value metric-value-mono">0</span>
+          </div>
+          <div class="metric-row">
+            <span class="metric-label">Detected at</span>
+            <span id="readout-time" class="metric-value metric-value-mono metric-value-sm">&mdash;</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel-card">
+        <h2 class="panel-title">Session</h2>
+        <div class="stats-grid">
+          <div class="stat-box">
+            <span id="stat-uptime" class="stat-value">00:00:00</span>
+            <span class="stat-label">Uptime</span>
+          </div>
+          <div class="stat-box">
+            <span id="stat-alerts" class="stat-value">0</span>
+            <span class="stat-label">Alerts</span>
+          </div>
+          <div class="stat-box">
+            <span id="stat-camera" class="stat-value stat-value-live">LIVE</span>
+            <span class="stat-label">Camera</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel-card">
+        <h2 class="panel-title">Recent Event</h2>
+        <div id="event-empty" class="event-empty">No events yet. System is monitoring.</div>
+        <div id="event-detail" class="event-detail hidden">
+          <img id="event-photo" class="event-photo" src="" alt="Accident capture">
+          <div class="event-meta">
+            <span class="event-time-label">Detected</span>
+            <span id="event-time" class="event-time">&mdash;</span>
+          </div>
+        </div>
+      </div>
+
+    </aside>
+  </main>
+
+  <footer class="footer">
+    Road Accident Detection &amp; Alarming System for GB &mdash; CNN + Motion-Spike Dual-Signal Engine
+  </footer>
+
+  <div id="alert-overlay" class="alert-overlay hidden">
+    <div class="alert-modal">
+      <div class="alert-modal-header">
+        <span class="alert-icon">&#9888;</span>
+        <h1>Accident Detected</h1>
+      </div>
+      <img id="alert-photo" class="alert-photo" src="" alt="Accident capture">
+      <p class="alert-timestamp">Detected at <span id="alert-time">&mdash;</span></p>
+      <div class="alert-actions">
+        <button id="btn-whatsapp" class="btn btn-primary">🚨 Send Alert</button>
+        <button id="btn-dismiss" class="btn btn-secondary">Dismiss &amp; Resume Monitoring</button>
+      </div>
+      <p id="alert-feedback" class="alert-feedback"></p>
+    </div>
+  </div>
+
+<script src="script.js?v=2"></script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+# --- secrets ---
+.env
+
+# --- virtual environments / interpreters ---
+.venv/
+venv/
+.uv-python/
+.uv-cache/
+
+# --- python artifacts ---
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+
+# --- runtime output ---
+accident_photos/
+*.log
+.app.log
+
+# --- editors / OS ---
+.vscode/
+.idea/
+.DS_Store
+
+# --- notebooks ---
+notebooks/.ipynb_checkpoints/
+
+# --- local data stores ---
+*.db
+*.sqlite3
