@@ -1,5 +1,10 @@
 # --- secrets ---
 .env
+.env.*
+!.env.example
+*.pem
+*.key
+service-account*.json
 
 # --- virtual environments / interpreters ---
 .venv/

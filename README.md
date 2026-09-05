@@ -6,7 +6,10 @@ analysis) watches camera feeds, latches exactly one alert per incident,
 saves an evidence photo, and can notify emergency contacts by Gmail email.
 Ships with a professional multi-camera monitoring dashboard.
 
-[Watch the project demo video](media/project-demo.mp4)
+<video controls width="720" preload="metadata">
+  <source src="media/project-demo.mp4" type="video/mp4">
+  Your browser does not support embedded video. [Open the demo video](media/project-demo.mp4).
+</video>
 
 ## Features
 
@@ -121,7 +124,7 @@ built-in rescaling layer. Training pipeline lives in
 ## Demo
 
 The repository includes a short walkthrough of the dashboard and detection
-workflow: [project-demo.mp4](media/project-demo.mp4).
+workflow. Use the player above, or [open the demo video directly](media/project-demo.mp4).
 
 ## License
 
