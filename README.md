@@ -6,9 +6,7 @@ analysis) watches camera feeds, latches exactly one alert per incident,
 saves an evidence photo, and can notify emergency contacts by Gmail email.
 Ships with a professional multi-camera monitoring dashboard.
 
-<video controls width="720" preload="metadata">
-  <source src="https://raw.githubusercontent.com/shoaib-akhter0/Road-Accident-Project-for-GB-/main/media/project-demo.mp4" type="video/mp4">
-</video>
+![Project demo](media/project-demo.gif)
 
 ## Features
 
