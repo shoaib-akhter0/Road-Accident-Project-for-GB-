@@ -7,8 +7,8 @@ saves an evidence photo, and can notify emergency contacts by Gmail email.
 Ships with a professional multi-camera monitoring dashboard.
 
 <video controls width="720" preload="metadata">
-  <source src="media/project-demo.mp4" type="video/mp4">
-  Your browser does not support embedded video. [Open the demo video](media/project-demo.mp4).
+  <source src="https://raw.githubusercontent.com/shoaib-akhter0/Road-Accident-Project-for-GB-/main/media/project-demo.mp4" type="video/mp4">
+  Your browser does not support embedded video. <a href="media/project-demo.mp4">Open the demo video</a>.
 </video>
 
 ## Features
