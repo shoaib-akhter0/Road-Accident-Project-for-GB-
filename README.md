@@ -8,7 +8,6 @@ Ships with a professional multi-camera monitoring dashboard.
 
 <video controls width="720" preload="metadata">
   <source src="https://raw.githubusercontent.com/shoaib-akhter0/Road-Accident-Project-for-GB-/main/media/project-demo.mp4" type="video/mp4">
-  Your browser does not support embedded video. <a href="media/project-demo.mp4">Open the demo video</a>.
 </video>
 
 ## Features
@@ -120,11 +119,6 @@ python main.py
 classifier (Accident / NonAccident), 224×224 raw RGB input with a
 built-in rescaling layer. Training pipeline lives in
 `notebooks/accident_classification.ipynb`.
-
-## Demo
-
-The repository includes a short walkthrough of the dashboard and detection
-workflow. Use the player above, or [open the demo video directly](media/project-demo.mp4).
 
 ## License
 
